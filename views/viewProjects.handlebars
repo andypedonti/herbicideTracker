@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">
+                View Projects
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div id="viewProjects" class="col-md-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button class="homebtn" type="button" class="btn btn-primary btn-lg active">
+                Home
+            </button>
+            <button class="supportbtn" type="button" class="btn btn-primary btn-lg active">
+                Support
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{#each projects}}
+            <h2> Project Details</h2>
+            <p>{{userid}}</p>
+            <p>{{chemical}}</p>
+            <p>{{unit}}</p>
+            <p>{{volume}}</p>
+            <p>{{area}}</p>
+            <p>{{ounces}}</p>
+            <p>{{windspeed}}</p>
+            <p>{{tempF}}</p>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<script src="js/view.js"></script>
