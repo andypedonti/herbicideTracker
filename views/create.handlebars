@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">
+                Create A Project
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form id="create">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Which Chemical did you apply?</label>
+                    <select class="form-control" id="chemical-input">
+                        <option>Glyphosate</option>
+                        <option>2-4D</option>
+                        <option>dimethylamine salt of quinclorac</option>
+                        <option>Fenoxaprop-p-ethyl</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Which unit of measure did the pesticide use?</label>
+                    <select class="form-control" id="unit-input">
+                        <option>Gallons</option>
+                        <option>Pounds</option>
+                        <option>Fluid Ounces</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="input">What Volume was applied?</label>
+                    <input type="text" class="form-control" id="volume-input" placeholder="quantity applied">
+                </div>
+                <div class="form-group">
+                    <label for="input">How many square feet were treated?</label>
+                    <input type="number" class="form-control" id="area" placeholder="square feet treated...">
+                </div>
+                <div class="form-group">
+                    <label for="input">How many ounces were mixed in each gallon?</label>
+                    <input type="number" class="form-control" id="ounces-input"
+                        placeholder="how many ounces per gallon?">
+                </div>
+                <div class="form-group">
+                    <label for="input">What was the windspeed?</label>
+                    <input type="number" class="form-control" id="wind-input" placeholder="wind speed in MPH">
+                </div>
+                <div class="form-group">
+                    <label for="input">What was the temperature (F)?</label>
+                    <input type="number" class="form-control" id="temp-input" placeholder="temp (F)">
+                </div>
+                <button id="createButton" type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
