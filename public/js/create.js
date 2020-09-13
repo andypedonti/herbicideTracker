@@ -1,6 +1,7 @@
 $(document).ready(() => {
   console.log("working");
   // Getting references to our form and input
+  const getCreateForm = $("#create")
   const createForm = $("#createButton");
   const chemicalInput = $("#chemical-input");
   const unitInput = $("#unit-input");
@@ -8,6 +9,13 @@ $(document).ready(() => {
   const ouncesInput = $("#ounces-input");
   const windInput = $("#wind-input");
   const tempInput = $("#unit-input");
+
+  getCreateForm.on("click", () => {
+    $.get("/create").then(() => {
+      console.log("createForm");
+      window.location.replace("/create");
+    });
+  });
 
   // When the submit button on the create page is clicked
   createForm.on("click", (event) => {

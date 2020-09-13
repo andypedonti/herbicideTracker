@@ -27,6 +27,7 @@ module.exports = function (app) {
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
     res.sendFile(path.join(__dirname, "../public/members.html"));
+    //res.render("create");
   });
 
   // view of the home page
@@ -44,8 +45,8 @@ module.exports = function (app) {
     //  pulling all the projects from the database
     db.Project.findAll({
       where: {
-        UserId: req.user.id,
-      },
+        UserId: req.user.id
+      }
     }).then(function (data) {
       res.render("viewProjects", { projects: data });
     });
