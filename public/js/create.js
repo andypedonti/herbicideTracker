@@ -1,7 +1,7 @@
 $(document).ready(() => {
   console.log("working");
   // Getting references to our form and input
-  const getCreateForm = $("#create")
+  const getCreateForm = $("#create");
   const createForm = $("#createButton");
   const chemicalInput = $("#chemical-input");
   const unitInput = $("#unit-input");
@@ -27,7 +27,7 @@ $(document).ready(() => {
       volume: volumeInput.val(),
       ounces: ouncesInput.val(),
       wind: windInput.val(),
-      temp: tempInput.val(),
+      temp: tempInput.val()
     };
 
     console.log(userData);
@@ -46,7 +46,7 @@ $(document).ready(() => {
     // Does a post to the create route. If successful, we are redirected to the  page
     $.post("/api/create", userData)
       .then(() => {
-        window.location.replace("/view");
+        window.location.replace("/viewProjects");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
@@ -65,3 +65,33 @@ $(document).ready(() => {
     $("#alert").fadeIn(500);
   }
 });
+
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(setPosition);
+}
+function setPosition(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+  console.log(lat);
+  console.log(lon);
+
+  let url = "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&exclude&appid=021e0ef373e6b3285caac8c9e9b52544";
+
+  $.ajax({
+    url: url,
+    method: "GET",
+  })
+    .then(function (responce) {
+      console.log(responce);
+
+      let tempF = (responce.current.temp - 273.15) * 1.8 + 32;
+      $(".temperature-value").text("Temperature (F): " + tempF.toFixed(2));
+      console.log(tempF);
+      $(".windSpeed").text("Wind Speed: " + responce.current.wind_speed + "(mph)")
+
+    })
+}
