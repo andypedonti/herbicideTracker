@@ -12,29 +12,29 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <button class="homebtn" type="button" class="btn btn-primary btn-lg active">
-                Home
-            </button>
-            <button class="supportbtn" type="button" class="btn btn-primary btn-lg active">
-                Support
-            </button>
+            <a href="/members"><button class="homebtn" type="button" class="btn btn-primary btn-lg active">
+                    Home
+                </button></a>
+            <a href="/support"><button class="supportbtn" type="button" class="btn btn-primary btn-lg active">
+                    Support
+                </button></a>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             {{#each projects}}
             <h2> Project Details</h2>
-            <p>{{UserId}}</p>
-            <p>{{chemical}}</p>
-            <p>{{unit}}</p>
-            <p>{{volume}}</p>
-            <p>{{area}}</p>
-            <p>{{ounces}}</p>
-            <p>{{windspeed}}</p>
-            <p>{{tempF}}</p>
+            <p>UserID: {{dataValues.UserId}}</p>
+            <p>Chemical: {{dataValues.chemical}}</p>
+            <p>Unit: {{dataValues.unit}}</p>
+            <p>Volume: {{dataValues.volume}}</p>
+            <p>Area: {{dataValues.area}}</p>
+            <p>Ounces: {{dataValues.ounces}}</p>
+            <p>Wind Speed {{dataValues.windspeed}}</p>
+            <p>TempF: {{dataValues.tempF}}</p>
             {{/each}}
         </div>
     </div>
 </div>
 
-{{!-- <script src="js/view.js"></script> --}}
+{{!-- <script src="js/create.js"></script> --}}

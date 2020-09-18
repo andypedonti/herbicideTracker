@@ -1,34 +1,28 @@
 $(document).ready(() => {
   console.log("working");
   // Getting references to our form and input
-  const getCreateForm = $("#create");
-  const createForm = $("#createButton");
+
+  const submitForm = $("#submitButton");
   const chemicalInput = $("#chemical-input");
   const unitInput = $("#unit-input");
   const volumeInput = $("#volume-input");
+  const areaInput = $("#area-input");
   const ouncesInput = $("#ounces-input");
   const windInput = $("#wind-input");
-  const tempInput = $("#unit-input");
-
-  // getCreateForm.on("click", () => {
-  //   $.get("/create").then(() => {
-  //     console.log("createForm");
-  //     window.location.replace("/create");
-  //   });
-  // });
+  const tempInput = $("#temp-input");
 
   // When the submit button on the create page is clicked
-  createForm.on("click", (event) => {
+  submitForm.on("click", (event) => {
     event.preventDefault();
     // this is the data being sent to the databse(req.body)
     const userData = {
       chemical: chemicalInput.val(),
       unit: unitInput.val(),
       volume: volumeInput.val(),
-      // area: areaInput.val(),
+      area: areaInput.val(),
       ounces: ouncesInput.val(),
-      // wind: windInput.val(),
-      // tempF: tempInput.val(),
+      windspeed: windInput.val(),
+      tempF: tempInput.val(),
     };
 
     console.log(userData);
@@ -37,9 +31,10 @@ $(document).ready(() => {
       !userData.chemical ||
       !userData.unit ||
       !userData.volume ||
-      !userData.ounces
-      // !userData.wind ||
-      // !userData.temp
+      !userData.area ||
+      !userData.ounces ||
+      !userData.windspeed ||
+      !userData.tempF
     ) {
       console.log("help");
       return;
@@ -57,6 +52,7 @@ $(document).ready(() => {
     chemicalInput.val("");
     unitInput.val("");
     volumeInput.val("");
+    areaInput.val("");
     ouncesInput.val("");
     windInput.val("");
     tempInput.val("");
@@ -97,5 +93,7 @@ function setPosition(position) {
     $(".windSpeed").text(
       "Wind Speed: " + response.current.wind_speed + "(mph)"
     );
+    $("#temp-input").val(tempF.toFixed(2));
+    $("#wind-input").val(response.current.wind_speed.toFixed(2));
   });
 }
