@@ -10,12 +10,12 @@ $(document).ready(() => {
   const windInput = $("#wind-input");
   const tempInput = $("#unit-input");
 
-  getCreateForm.on("click", () => {
-    $.get("/create").then(() => {
-      console.log("createForm");
-      window.location.replace("/create");
-    });
-  });
+  // getCreateForm.on("click", () => {
+  //   $.get("/create").then(() => {
+  //     console.log("createForm");
+  //     window.location.replace("/create");
+  //   });
+  // });
 
   // When the submit button on the create page is clicked
   createForm.on("click", (event) => {
@@ -25,9 +25,10 @@ $(document).ready(() => {
       chemical: chemicalInput.val(),
       unit: unitInput.val(),
       volume: volumeInput.val(),
+      // area: areaInput.val(),
       ounces: ouncesInput.val(),
-      wind: windInput.val(),
-      temp: tempInput.val()
+      // wind: windInput.val(),
+      // tempF: tempInput.val(),
     };
 
     console.log(userData);
@@ -36,20 +37,22 @@ $(document).ready(() => {
       !userData.chemical ||
       !userData.unit ||
       !userData.volume ||
-      !userData.ounces ||
-      !userData.wind ||
-      !userData.temp
+      !userData.ounces
+      // !userData.wind ||
+      // !userData.temp
     ) {
+      console.log("help");
       return;
     }
 
     // Does a post to the create route. If successful, we are redirected to the  page
     $.post("/api/create", userData)
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         window.location.replace("/viewProjects");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
-      .catch(handleLoginErr);
+      .catch((err) => console.log(err));
 
     chemicalInput.val("");
     unitInput.val("");
@@ -75,7 +78,8 @@ function setPosition(position) {
   console.log(lat);
   console.log(lon);
 
-  let url = "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+  let url =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
     lat +
     "&lon=" +
     lon +
@@ -84,14 +88,14 @@ function setPosition(position) {
   $.ajax({
     url: url,
     method: "GET",
-  })
-    .then(function (responce) {
-      console.log(responce);
+  }).then(function(response) {
+    console.log(response);
 
-      let tempF = (responce.current.temp - 273.15) * 1.8 + 32;
-      $(".temperature-value").text("Temperature (F): " + tempF.toFixed(2));
-      console.log(tempF);
-      $(".windSpeed").text("Wind Speed: " + responce.current.wind_speed + "(mph)")
-
-    })
+    let tempF = (response.current.temp - 273.15) * 1.8 + 32;
+    $(".temperature-value").text("Temperature (F): " + tempF.toFixed(2));
+    console.log(tempF);
+    $(".windSpeed").text(
+      "Wind Speed: " + response.current.wind_speed + "(mph)"
+    );
+  });
 }

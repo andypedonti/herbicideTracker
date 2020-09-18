@@ -6,7 +6,7 @@ const db = require("../models");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function (app) {
+module.exports = function(app) {
   app.get("/", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
@@ -41,14 +41,16 @@ module.exports = function (app) {
   });
 
   // view of the view projects page
-  app.get("/view", isAuthenticated, (req, res) => {
+  app.get("/viewProjects", isAuthenticated, (req, res) => {
     //  pulling all the projects from the database
     db.Project.findAll({
       where: {
-        UserId: req.user.id
+        UserId: req.user.id,
       }
-    }).then(function (data) {
-      res.render("viewProjects", { projects: data });
+
+    }).then(function(data) {
+      console.log(data);
+      res.render("viewProjects", data);
     });
   });
 
