@@ -30,4 +30,7 @@ None needed
 
 ## Contributing
 
-Please only contribut to css
+Please only contribute to css
+
+Git hub repo: https://github.com/andypedonti/herbicideTracker
+deployed: https://immense-waters-76088.herokuapp.com/
