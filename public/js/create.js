@@ -65,15 +65,18 @@ $(document).ready(() => {
   }
 });
 
+// accessing the users location
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(setPosition);
 }
+// setting the postion based on the geolocator
 function setPosition(position) {
   const lat = position.coords.latitude;
   const lon = position.coords.longitude;
   console.log(lat);
   console.log(lon);
 
+// setting url to prepare for ajax call into weather API
   let url =
     "https://api.openweathermap.org/data/2.5/onecall?lat=" +
     lat +
@@ -86,13 +89,15 @@ function setPosition(position) {
     method: "GET",
   }).then(function(response) {
     console.log(response);
-
+    // setting variables for and converting temp to (f)
     let tempF = (response.current.temp - 273.15) * 1.8 + 32;
     $(".temperature-value").text("Temperature (F): " + tempF.toFixed(2));
     console.log(tempF);
+
     $(".windSpeed").text(
       "Wind Speed: " + response.current.wind_speed + "(mph)"
     );
+    
     $("#temp-input").val(tempF.toFixed(2));
     $("#wind-input").val(response.current.wind_speed.toFixed(2));
   });
